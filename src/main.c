@@ -159,7 +159,7 @@ void gen_key(uint8_t *key) {
 }
 
 void main(void) {
-    char buf[40];
+    char buf[41];
     wallet_t wallet;
     ti_var_t wallet_var;
     int keycode, exit = 0;
@@ -199,8 +199,13 @@ void main(void) {
 
                         // Split the private key to 2 chunks (to fit on lines)
                         strncpy(buf, wallet.wif, 40);
+                        buf[40] = 0;
+
                         gfx_PrintStringXY(buf, 0, 216);
+
                         strncpy(buf, wallet.wif+40, 12);
+                        buf[12] = 0;
+
                         gfx_PrintStringXY(buf, 0, 224);
 
                         while(!os_GetCSC());
